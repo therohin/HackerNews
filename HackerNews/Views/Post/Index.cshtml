@@ -1,0 +1,47 @@
+﻿@model IEnumerable<HackerNews.Models.Post>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    @foreach (var item in Model) {
+    <div class="container-fluid post-container">
+        <div class="container-fluid">
+            <div class="col-md-1">
+                @if (!string.Equals(User.Identity.Name, item.User.UserName))
+                {
+                    <a href="/Post/Vote?id=@item.PostId" title="Upvote">
+                        <i class='material-icons'>arrow_drop_up</i>
+                    </a>
+                }
+                else
+                {
+                    <a href="" title="Not allowed" onclick="return false;">
+                        <i class='material-icons'>arrow_drop_up</i>
+                    </a>
+                }
+            </div>
+            <div class="col-md-11">
+                <a href="@item.URL">@Html.DisplayFor(modelItem => item.Title)</a>
+            </div>
+        </div>
+        <div class="container-fluid small">
+            <div class="col-md-1">
+                @Html.DisplayFor(modelItem => item.Vote) Point(s)
+            </div>
+            <div class="col-md-3">
+                By @Html.DisplayFor(modelItem => item.User.UserName)
+            </div>
+        </div>
+    </div>
+    }
+</body>
+</html>

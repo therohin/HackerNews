@@ -11,7 +11,7 @@ namespace HackerNews.Controllers
 {
     public class RegistrationController : Controller
     {
-        Entities _db = new Entities();
+        HackerNewsModel _db = new HackerNewsModel();
 
         // GET: Registration
         public ActionResult Register()
@@ -30,18 +30,19 @@ namespace HackerNews.Controllers
             }
             catch (DbEntityValidationException ex)
             {
+                throw;
                 //Log
             }
             catch (DbUpdateException ex)
             {
+                throw;
                 //Log
             }
             catch (Exception ex)
             {
+                throw;
                 //Log Error 
-                return View();
             }
-            return View();
         }
 
         #region private methods

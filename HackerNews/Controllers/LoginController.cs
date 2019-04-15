@@ -10,7 +10,7 @@ namespace HackerNews.Controllers
 {
     public class LoginController : Controller
     {
-        Entities _db = new Entities();
+        HackerNewsModel _db = new HackerNewsModel();
 
         // GET: Login
         public ActionResult Login()
@@ -32,6 +32,7 @@ namespace HackerNews.Controllers
             }
             catch (Exception ex)
             {
+                throw;
                 //Log Error 
             }
             return View(user);
@@ -45,6 +46,7 @@ namespace HackerNews.Controllers
             }
             catch(Exception ex)
             {
+                throw;
                 //Log Error
             }
             return Redirect("/Post/Index");

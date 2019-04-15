@@ -13,12 +13,10 @@ namespace HackerNews.Controllers
 {
     public class PostController : Controller
     {
-        Entities _db = new Entities();
+        HackerNewsModel _db = new HackerNewsModel();
         // GET: Post
         public ActionResult Index()
-        {
-            Entities db = new Entities();
-            return View(db.Posts);
+        {   return View(_db.Posts.ToList());
         }
 
         [Authorize]
@@ -50,14 +48,17 @@ namespace HackerNews.Controllers
             }
             catch(DbEntityValidationException ex)
             {
+                throw;
                 //Log
             }
             catch(DbUpdateException ex)
             {
+                throw;
                 //Log
             }
             catch(Exception ex)
             {
+                throw;
                 //Log
             }
             return RedirectToAction("Index");
@@ -74,11 +75,13 @@ namespace HackerNews.Controllers
             }
             catch (DbUpdateException ex)
             {
+                throw;
                 //Handle DB Error
                 //Log
             }
             catch(Exception ex)
             {
+                throw;
                 //Log
             }
             return RedirectToAction("Index");
